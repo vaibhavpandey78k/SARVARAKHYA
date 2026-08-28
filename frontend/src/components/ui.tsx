@@ -7,5 +7,5 @@ export const ErrorState=({title='Something went wrong',text='Please try again or
 export const SIFBadge=({value}:{value:boolean|null|undefined})=><span className={`badge ${value===true?'danger':value===null?'confidence':'safe'}`}>{value===undefined?'Not analyzed':value===null?'Uncertain':value?'SIF Potential':'Non-SIF Potential'}</span>;
 export const ConfidenceBadge=({value}:{value?:string})=><span className={`badge confidence ${String(value||'').toLowerCase()}`}>{value||'Not available'} confidence</span>;
 export const RuleBadge=({children}:{children:ReactNode})=><span className="rule">{children}</span>;
-export const ReviewStatus=({value}:{value?:string})=><span className={`status ${String(value||'').toLowerCase().replaceAll(' ','-')}`}>{value||'Not available'}</span>;
+export const ReviewStatus=({value}:{value?:string})=><span className={`status ${String(value||'').toLowerCase().replace(/ /g,'-')}`}>{value||'Not available'}</span>;
 export const Section=({title,children,action}:{title:string;children:ReactNode;action?:ReactNode})=><section className="panel"><div className="panel-head"><h2>{title}</h2>{action}</div>{children}</section>;
