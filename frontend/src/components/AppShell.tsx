@@ -1,0 +1,6 @@
+﻿import { NavLink } from 'react-router-dom';
+import { BarChart3, ClipboardList, FileSearch, Gauge, GitBranch, ShieldCheck } from 'lucide-react';
+import type { ReactNode } from 'react';
+const links=[['/','Dashboard',Gauge],['/analyze','Analyze Report',FileSearch],['/reports','Reports',ClipboardList],['/precursors','Precursor Explorer',GitBranch]] as const;
+export default function AppShell({children}:{children:ReactNode}){return <div className="app"><aside className="sidebar"><div className="brand"><div className="brand-icon"><ShieldCheck size={20}/></div><div><strong>SARVARAKHYA</strong><small>SIF Intelligence</small></div></div><nav>{links.map(([to,label,Icon])=><NavLink key={to} to={to} end={to==='/' } className={({isActive})=>isActive?'active':''}><Icon size={18}/><span>{label}</span></NavLink>)}</nav><div className="sidebar-note"><ShieldCheck size={16}/><div><strong>HSE review required</strong><p>AI outputs support professional review; they are not final safety decisions.</p></div></div></aside><main className="main"><header className="header"><div><span className="eyebrow">HSE OPERATIONS</span><h1>SIF Precursor Intelligence</h1></div><div className="header-meta"><span className="mode-dot"/> Development data</div></header><div className="content">{children}</div></main></div>}
+

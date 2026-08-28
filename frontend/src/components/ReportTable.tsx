@@ -1,0 +1,4 @@
+import { Link } from 'react-router-dom';
+import type { Report } from '../types/api';
+import { ConfidenceBadge, RuleBadge, SIFBadge } from './ui';
+export default function ReportTable({items}:{items:Report[]}){return <div className="table-wrap"><table><thead><tr><th>Report</th><th>SIF potential</th><th>Site</th><th>Activity</th><th>Rule</th><th>Confidence</th><th>Date</th></tr></thead><tbody>{items.map(r=><tr key={r.id}><td><Link className="report-link" to={`/reports/${r.id}`}><strong>{r.id}</strong><span>{r.report_text}</span></Link></td><td><SIFBadge value={r.analysis?.sif_prediction}/></td><td>{r.site||'Not available'}</td><td>{r.analysis?.activity||'Not analyzed'}</td><td>{r.analysis?.life_saving_rules?.[0]?<RuleBadge>{r.analysis.life_saving_rules[0]}</RuleBadge>:'—'}</td><td><ConfidenceBadge value={r.analysis?.confidence}/></td><td>{r.date||'—'}</td></tr>)}</tbody></table></div>}
